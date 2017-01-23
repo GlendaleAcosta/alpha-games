@@ -5,6 +5,7 @@ var Main = require('Main');
 var Home = require('Home');
 
 
+require("!style-loader!css-loader!sass-loader!./stylesheets/main.scss");
 
 ReactDOM.render(
     <Router history={browserHistory}>
