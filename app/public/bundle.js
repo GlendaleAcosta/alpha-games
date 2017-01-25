@@ -56,9 +56,9 @@
 	    browserHistory = _require.browserHistory;
 
 	var Main = __webpack_require__(233);
-	var Home = __webpack_require__(236);
+	var Home = __webpack_require__(237);
 
-	__webpack_require__(240);
+	__webpack_require__(241);
 
 	ReactDOM.render(React.createElement(
 	    Router,
@@ -26577,6 +26577,7 @@
 	    Indexlink = _require.Indexlink;
 
 	var LoginModal = __webpack_require__(235);
+	var SignUpModal = __webpack_require__(236);
 
 	var Nav = function (_React$Component) {
 	    _inherits(Nav, _React$Component);
@@ -26588,7 +26589,13 @@
 
 	        _this.showLogin = _this.showLogin.bind(_this);
 	        _this.closeLogin = _this.closeLogin.bind(_this);
-	        _this.state = { showLogin: false };
+	        _this.showSignUp = _this.showSignUp.bind(_this);
+	        _this.closeSignUp = _this.closeSignUp.bind(_this);
+	        _this.state = {
+	            showLogin: false,
+	            showSignUp: false
+	        };
+
 	        return _this;
 	    }
 
@@ -26603,16 +26610,35 @@
 	            this.setState({ showLogin: false });
 	        }
 	    }, {
+	        key: 'showSignUp',
+	        value: function showSignUp() {
+	            this.setState({ showSignUp: true });
+	        }
+	    }, {
+	        key: 'closeSignUp',
+	        value: function closeSignUp() {
+	            this.setState({ showSignUp: false });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var that = this;
-	            var showLogin = this.state.showLogin;
+	            var _state = this.state,
+	                showLogin = _state.showLogin,
+	                showSignUp = _state.showSignUp;
 
 
 	            function renderLogin() {
 
-	                if (showLogin === true) {
+	                if (showLogin) {
 	                    return React.createElement(LoginModal, { onCloseLogin: that.closeLogin });
+	                }
+	            }
+
+	            function renderSignUp() {
+
+	                if (showSignUp) {
+	                    return React.createElement(SignUpModal, { onCloseSignUp: that.closeSignUp });
 	                }
 	            }
 
@@ -26682,7 +26708,7 @@
 	                                    { className: 'nav-item' },
 	                                    React.createElement(
 	                                        'a',
-	                                        { className: 'nav-link', href: '#' },
+	                                        { onClick: this.showSignUp, className: 'nav-link', href: '#' },
 	                                        'Sign-up'
 	                                    )
 	                                )
@@ -26690,7 +26716,8 @@
 	                        )
 	                    )
 	                ),
-	                renderLogin()
+	                renderLogin(),
+	                renderSignUp()
 	            );
 	        }
 	    }]);
@@ -26727,7 +26754,6 @@
 	        var _this = _possibleConstructorReturn(this, (LoginModal.__proto__ || Object.getPrototypeOf(LoginModal)).call(this, props));
 
 	        _this.closeLogin = _this.closeLogin.bind(_this);
-
 	        return _this;
 	    }
 
@@ -26777,12 +26803,82 @@
 /* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var React = __webpack_require__(1);
+
+	var SignUpModal = function (_React$Component) {
+	    _inherits(SignUpModal, _React$Component);
+
+	    function SignUpModal(props) {
+	        _classCallCheck(this, SignUpModal);
+
+	        var _this = _possibleConstructorReturn(this, (SignUpModal.__proto__ || Object.getPrototypeOf(SignUpModal)).call(this, props));
+
+	        _this.closeSignUp = _this.closeSignUp.bind(_this);
+	        return _this;
+	    }
+
+	    _createClass(SignUpModal, [{
+	        key: "closeSignUp",
+	        value: function closeSignUp() {
+	            this.props.onCloseSignUp();
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            return React.createElement(
+	                "div",
+	                { className: "modal-fade" },
+	                React.createElement(
+	                    "div",
+	                    { className: "login-modal card col-md-4" },
+	                    React.createElement(
+	                        "div",
+	                        { className: "card-block" },
+	                        React.createElement(
+	                            "h1",
+	                            { className: "lead" },
+	                            "Sign Up Modal"
+	                        )
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        { className: "card-block" },
+	                        React.createElement(
+	                            "button",
+	                            { onClick: this.closeSignUp, type: "button", className: "btn form-control btn-primary" },
+	                            "Close"
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return SignUpModal;
+	}(React.Component);
+
+	module.exports = SignUpModal;
+
+/***/ },
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var HomeHeader = __webpack_require__(237);
-	var GameGrid = __webpack_require__(238);
-	var Footer = __webpack_require__(239);
+	var HomeHeader = __webpack_require__(238);
+	var GameGrid = __webpack_require__(239);
+	var Footer = __webpack_require__(240);
 
 	var Home = function Home(props) {
 	    return React.createElement(
@@ -26797,7 +26893,7 @@
 	module.exports = Home;
 
 /***/ },
-/* 237 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26875,7 +26971,7 @@
 	module.exports = HomeHeader;
 
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26992,7 +27088,7 @@
 	module.exports = GameGrid;
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27097,16 +27193,16 @@
 	module.exports = Footer;
 
 /***/ },
-/* 240 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(241);
+	var content = __webpack_require__(242);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(243)(content, {});
+	var update = __webpack_require__(244)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27123,10 +27219,10 @@
 	}
 
 /***/ },
-/* 241 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(242)();
+	exports = module.exports = __webpack_require__(243)();
 	// imports
 
 
@@ -27137,7 +27233,7 @@
 
 
 /***/ },
-/* 242 */
+/* 243 */
 /***/ function(module, exports) {
 
 	/*
@@ -27193,7 +27289,7 @@
 
 
 /***/ },
-/* 243 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*

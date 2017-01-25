@@ -1,6 +1,7 @@
 var React = require('react');
 var { Link, Indexlink } = require('react-router');
 var LoginModal = require('LoginModal');
+var SignUpModal = require('SignUpModal');
 
 class Nav extends React.Component{
 
@@ -8,26 +9,47 @@ class Nav extends React.Component{
         super(props);        
         this.showLogin = this.showLogin.bind(this);
         this.closeLogin = this.closeLogin.bind(this);
-        this.state = { showLogin: false};
+        this.showSignUp = this.showSignUp.bind(this);
+        this.closeSignUp = this.closeSignUp.bind(this);
+        this.state = { 
+            showLogin: false,
+            showSignUp: false
+        };
+        
     }
     
     showLogin(){    
-        this.setState({ showLogin: true })
+        this.setState({ showLogin: true });
     }
     closeLogin(){
-        this.setState({ showLogin: false })
+        this.setState({ showLogin: false });
+    }
+    showSignUp(){
+        this.setState({ showSignUp: true });
+    }
+    closeSignUp(){
+        this.setState({ showSignUp: false });
     }
     
 
     render(){
         var that = this;
-        var { showLogin } = this.state;
+        var { showLogin, showSignUp } = this.state;
 
         function renderLogin(){
             
-            if (showLogin === true) {
+            if (showLogin) {
                 return (
                     <LoginModal onCloseLogin={that.closeLogin}/>
+                )
+            }
+        }
+
+        function renderSignUp(){
+            
+            if (showSignUp) {
+                return (
+                    <SignUpModal onCloseSignUp={that.closeSignUp}/>
                 )
             }
         }
@@ -56,7 +78,7 @@ class Nav extends React.Component{
                                     <a onClick={this.showLogin} className="nav-link" href="#">Login</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">Sign-up</a>
+                                    <a onClick={this.showSignUp} className="nav-link" href="#">Sign-up</a>
                                 </li>
                             </ul>
                             
@@ -64,6 +86,7 @@ class Nav extends React.Component{
                     </div>
                 </nav>
                 {renderLogin()}
+                {renderSignUp()}
             </div>
         );
     }
