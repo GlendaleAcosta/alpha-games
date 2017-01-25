@@ -1,0 +1,10 @@
+.footer {
+    background-color: $lightblue;
+}
+.footer-inline-list {
+    margin-right: 20px !important;
+
+    &:last-child {
+        margin-right: 0 !important;
+    }
+}

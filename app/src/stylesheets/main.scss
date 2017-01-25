@@ -1,5 +1,5 @@
-$mainColor: maroon;
-
-body {
-    background-color: $mainColor;
-}
+@import 'modules/variables.scss';
+@import 'modules/utilities.scss';
+@import 'modules/home.scss';
+@import 'modules/footer.scss';
+@import 'modules/_loginmodal.scss';

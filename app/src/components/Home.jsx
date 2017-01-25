@@ -1,11 +1,14 @@
 var React = require('react');
+var HomeHeader = require('HomeHeader');
+var GameGrid = require('GameGrid');
+var Footer = require('Footer');
 
 var Home = (props) => {
     return (
-        <div className="jumbotron">
-            <div className="container">
-                <h1>Home Component</h1>
-            </div>
+        <div>
+            <HomeHeader/>
+            <GameGrid/>
+            <Footer/>
         </div>
     );
 }

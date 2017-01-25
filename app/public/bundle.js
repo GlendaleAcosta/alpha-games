@@ -56,9 +56,9 @@
 	    browserHistory = _require.browserHistory;
 
 	var Main = __webpack_require__(233);
-	var Home = __webpack_require__(235);
+	var Home = __webpack_require__(236);
 
-	__webpack_require__(236);
+	__webpack_require__(240);
 
 	ReactDOM.render(React.createElement(
 	    Router,
@@ -26562,86 +26562,143 @@
 
 	'use strict';
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 	var React = __webpack_require__(1);
 
 	var _require = __webpack_require__(178),
 	    Link = _require.Link,
 	    Indexlink = _require.Indexlink;
 
-	var Nav = React.createClass({
-	    displayName: 'Nav',
+	var LoginModal = __webpack_require__(235);
 
-	    render: function render() {
-	        return React.createElement(
-	            'nav',
-	            { className: 'navbar fixed-top navbar-toggleable-md navbar-light bg-faded' },
-	            React.createElement(
+	var Nav = function (_React$Component) {
+	    _inherits(Nav, _React$Component);
+
+	    function Nav(props) {
+	        _classCallCheck(this, Nav);
+
+	        var _this = _possibleConstructorReturn(this, (Nav.__proto__ || Object.getPrototypeOf(Nav)).call(this, props));
+
+	        _this.showLogin = _this.showLogin.bind(_this);
+	        _this.closeLogin = _this.closeLogin.bind(_this);
+	        _this.state = { showLogin: false };
+	        return _this;
+	    }
+
+	    _createClass(Nav, [{
+	        key: 'showLogin',
+	        value: function showLogin() {
+	            this.setState({ showLogin: true });
+	        }
+	    }, {
+	        key: 'closeLogin',
+	        value: function closeLogin() {
+	            this.setState({ showLogin: false });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var that = this;
+	            var showLogin = this.state.showLogin;
+
+
+	            function renderLogin() {
+
+	                if (showLogin === true) {
+	                    return React.createElement(LoginModal, { onCloseLogin: that.closeLogin });
+	                }
+	            }
+
+	            return React.createElement(
 	                'div',
-	                { className: 'container' },
+	                null,
 	                React.createElement(
-	                    'button',
-	                    { className: 'navbar-toggler navbar-toggler-right', type: 'button', 'data-toggle': 'collapse', 'data-target': '#navbarSupportedContent', 'aria-controls': 'navbarSupportedContent', 'aria-expanded': 'false', 'aria-label': 'Toggle navigation' },
-	                    React.createElement('span', { className: 'navbar-toggler-icon' })
-	                ),
-	                React.createElement(
-	                    'a',
-	                    { className: 'navbar-brand', href: '#' },
-	                    'Navbar'
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'collapse navbar-collapse', id: 'navbarSupportedContent' },
+	                    'nav',
+	                    { className: 'navbar fixed-top navbar-toggleable-md navbar-light bg-faded' },
 	                    React.createElement(
-	                        'ul',
-	                        { className: 'navbar-nav mr-auto' },
-	                        React.createElement(
-	                            'li',
-	                            { className: 'nav-item active' },
-	                            React.createElement(
-	                                'a',
-	                                { className: 'nav-link', href: '#' },
-	                                'Home ',
-	                                React.createElement(
-	                                    'span',
-	                                    { className: 'sr-only' },
-	                                    '(current)'
-	                                )
-	                            )
-	                        ),
-	                        React.createElement(
-	                            'li',
-	                            { className: 'nav-item' },
-	                            React.createElement(
-	                                'a',
-	                                { className: 'nav-link', href: '#' },
-	                                'Link'
-	                            )
-	                        ),
-	                        React.createElement(
-	                            'li',
-	                            { className: 'nav-item' },
-	                            React.createElement(
-	                                'a',
-	                                { className: 'nav-link disabled', href: '#' },
-	                                'Disabled'
-	                            )
-	                        )
-	                    ),
-	                    React.createElement(
-	                        'form',
-	                        { className: 'form-inline my-2 my-lg-0' },
-	                        React.createElement('input', { className: 'form-control mr-sm-2', type: 'text', placeholder: 'Search' }),
+	                        'div',
+	                        { className: 'container' },
 	                        React.createElement(
 	                            'button',
-	                            { className: 'btn btn-outline-success my-2 my-sm-0', type: 'submit' },
-	                            'Search'
+	                            { className: 'navbar-toggler navbar-toggler-right', type: 'button', 'data-toggle': 'collapse', 'data-target': '#navbarSupportedContent', 'aria-controls': 'navbarSupportedContent', 'aria-expanded': 'false', 'aria-label': 'Toggle navigation' },
+	                            React.createElement('span', { className: 'navbar-toggler-icon' })
+	                        ),
+	                        React.createElement(
+	                            'a',
+	                            { className: 'navbar-brand', href: '#' },
+	                            'Navbar'
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'collapse navbar-collapse', id: 'navbarSupportedContent' },
+	                            React.createElement(
+	                                'ul',
+	                                { className: 'navbar-nav mr-auto' },
+	                                React.createElement(
+	                                    'li',
+	                                    { className: 'nav-item active' },
+	                                    React.createElement(
+	                                        'a',
+	                                        { className: 'nav-link', href: '#' },
+	                                        'Home ',
+	                                        React.createElement(
+	                                            'span',
+	                                            { className: 'sr-only' },
+	                                            '(current)'
+	                                        )
+	                                    )
+	                                ),
+	                                React.createElement(
+	                                    'li',
+	                                    { className: 'nav-item' },
+	                                    React.createElement(
+	                                        'a',
+	                                        { className: 'nav-link', href: '#' },
+	                                        'About'
+	                                    )
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'ul',
+	                                { className: 'navbar-nav float-xs-right' },
+	                                React.createElement(
+	                                    'li',
+	                                    { className: 'nav-item' },
+	                                    React.createElement(
+	                                        'a',
+	                                        { onClick: this.showLogin, className: 'nav-link', href: '#' },
+	                                        'Login'
+	                                    )
+	                                ),
+	                                React.createElement(
+	                                    'li',
+	                                    { className: 'nav-item' },
+	                                    React.createElement(
+	                                        'a',
+	                                        { className: 'nav-link', href: '#' },
+	                                        'Sign-up'
+	                                    )
+	                                )
+	                            )
 	                        )
 	                    )
-	                )
-	            )
-	        );
-	    }
-	});
+	                ),
+	                renderLogin()
+	            );
+	        }
+	    }]);
+
+	    return Nav;
+	}(React.Component);
+
+	;
 
 	module.exports = Nav;
 
@@ -26651,37 +26708,405 @@
 
 	"use strict";
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 	var React = __webpack_require__(1);
+
+	var LoginModal = function (_React$Component) {
+	    _inherits(LoginModal, _React$Component);
+
+	    function LoginModal(props) {
+	        _classCallCheck(this, LoginModal);
+
+	        var _this = _possibleConstructorReturn(this, (LoginModal.__proto__ || Object.getPrototypeOf(LoginModal)).call(this, props));
+
+	        _this.closeLogin = _this.closeLogin.bind(_this);
+
+	        return _this;
+	    }
+
+	    _createClass(LoginModal, [{
+	        key: "closeLogin",
+	        value: function closeLogin() {
+	            this.props.onCloseLogin();
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            return React.createElement(
+	                "div",
+	                { className: "modal-fade" },
+	                React.createElement(
+	                    "div",
+	                    { className: "login-modal card col-md-4" },
+	                    React.createElement(
+	                        "div",
+	                        { className: "card-block" },
+	                        React.createElement(
+	                            "h1",
+	                            { className: "lead" },
+	                            "Login Modal"
+	                        )
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        { className: "card-block" },
+	                        React.createElement(
+	                            "button",
+	                            { onClick: this.closeLogin, type: "button", className: "btn form-control btn-primary" },
+	                            "Close"
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return LoginModal;
+	}(React.Component);
+
+	module.exports = LoginModal;
+
+/***/ },
+/* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var HomeHeader = __webpack_require__(237);
+	var GameGrid = __webpack_require__(238);
+	var Footer = __webpack_require__(239);
 
 	var Home = function Home(props) {
 	    return React.createElement(
-	        "div",
-	        { className: "jumbotron" },
-	        React.createElement(
-	            "div",
-	            { className: "container" },
-	            React.createElement(
-	                "h1",
-	                null,
-	                "Home Component"
-	            )
-	        )
+	        'div',
+	        null,
+	        React.createElement(HomeHeader, null),
+	        React.createElement(GameGrid, null),
+	        React.createElement(Footer, null)
 	    );
 	};
 
 	module.exports = Home;
 
 /***/ },
-/* 236 */
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var React = __webpack_require__(1);
+
+	var HomeHeader = function (_React$Component) {
+	    _inherits(HomeHeader, _React$Component);
+
+	    function HomeHeader(props) {
+	        _classCallCheck(this, HomeHeader);
+
+	        return _possibleConstructorReturn(this, (HomeHeader.__proto__ || Object.getPrototypeOf(HomeHeader)).call(this, props));
+	    }
+
+	    _createClass(HomeHeader, [{
+	        key: "render",
+	        value: function render() {
+	            return React.createElement(
+	                "div",
+	                { className: "jumbotron home-header" },
+	                React.createElement(
+	                    "div",
+	                    { className: "container" },
+	                    React.createElement(
+	                        "div",
+	                        { className: "row" },
+	                        React.createElement(
+	                            "div",
+	                            { className: "col-md-10 offset-md-1 row" },
+	                            React.createElement(
+	                                "div",
+	                                { className: "col-md-8" },
+	                                React.createElement(
+	                                    "div",
+	                                    { className: "header-featured-game" },
+	                                    React.createElement(
+	                                        "h1",
+	                                        null,
+	                                        "First Column"
+	                                    )
+	                                )
+	                            ),
+	                            React.createElement(
+	                                "div",
+	                                { className: "col-md-4 p-0-l" },
+	                                React.createElement(
+	                                    "div",
+	                                    { className: "header-featured-game-info" },
+	                                    React.createElement(
+	                                        "h1",
+	                                        null,
+	                                        "Second Column"
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return HomeHeader;
+	}(React.Component);
+
+	module.exports = HomeHeader;
+
+/***/ },
+/* 238 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var React = __webpack_require__(1);
+
+	var GameGrid = function (_React$Component) {
+	    _inherits(GameGrid, _React$Component);
+
+	    function GameGrid(props) {
+	        _classCallCheck(this, GameGrid);
+
+	        return _possibleConstructorReturn(this, (GameGrid.__proto__ || Object.getPrototypeOf(GameGrid)).call(this, props));
+	    }
+
+	    _createClass(GameGrid, [{
+	        key: "render",
+	        value: function render() {
+	            return React.createElement(
+	                "div",
+	                null,
+	                React.createElement(
+	                    "div",
+	                    { className: "container" },
+	                    React.createElement(
+	                        "h2",
+	                        { className: "display-4" },
+	                        "Featured Games"
+	                    )
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "container space" },
+	                    React.createElement(
+	                        "div",
+	                        { className: "row" },
+	                        React.createElement(
+	                            "div",
+	                            { className: "col-md-2" },
+	                            React.createElement("img", { className: "img-fluid", src: "../images/overwatch-test-img.jpg" }),
+	                            React.createElement(
+	                                "p",
+	                                { className: "lead space-tiny" },
+	                                "Overwatch"
+	                            )
+	                        ),
+	                        React.createElement(
+	                            "div",
+	                            { className: "col-md-2" },
+	                            React.createElement("img", { className: "img-fluid", src: "../images/overwatch-test-img.jpg" }),
+	                            React.createElement(
+	                                "p",
+	                                { className: "lead space-tiny" },
+	                                "Overwatch"
+	                            )
+	                        ),
+	                        React.createElement(
+	                            "div",
+	                            { className: "col-md-2" },
+	                            React.createElement("img", { className: "img-fluid", src: "../images/overwatch-test-img.jpg" }),
+	                            React.createElement(
+	                                "p",
+	                                { className: "lead space-tiny" },
+	                                "Overwatch"
+	                            )
+	                        ),
+	                        React.createElement(
+	                            "div",
+	                            { className: "col-md-2" },
+	                            React.createElement("img", { className: "img-fluid", src: "../images/overwatch-test-img.jpg" }),
+	                            React.createElement(
+	                                "p",
+	                                { className: "lead space-tiny" },
+	                                "Overwatch"
+	                            )
+	                        ),
+	                        React.createElement(
+	                            "div",
+	                            { className: "col-md-2" },
+	                            React.createElement("img", { className: "img-fluid", src: "../images/overwatch-test-img.jpg" }),
+	                            React.createElement(
+	                                "p",
+	                                { className: "lead space-tiny" },
+	                                "Overwatch"
+	                            )
+	                        ),
+	                        React.createElement(
+	                            "div",
+	                            { className: "col-md-2" },
+	                            React.createElement("img", { className: "img-fluid", src: "../images/overwatch-test-img.jpg" }),
+	                            React.createElement(
+	                                "p",
+	                                { className: "lead space-tiny" },
+	                                "Overwatch"
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return GameGrid;
+	}(React.Component);
+
+	module.exports = GameGrid;
+
+/***/ },
+/* 239 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var React = __webpack_require__(1);
+
+	var Footer = function (_React$Component) {
+	    _inherits(Footer, _React$Component);
+
+	    function Footer(props) {
+	        _classCallCheck(this, Footer);
+
+	        return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, props));
+	    }
+
+	    _createClass(Footer, [{
+	        key: "render",
+	        value: function render() {
+	            return React.createElement(
+	                "div",
+	                { className: "footer space-footer" },
+	                React.createElement(
+	                    "div",
+	                    { className: "container" },
+	                    React.createElement(
+	                        "div",
+	                        { className: "row" },
+	                        React.createElement(
+	                            "div",
+	                            { className: "col-md-12 text-center" },
+	                            React.createElement(
+	                                "ul",
+	                                { className: "list-inline" },
+	                                React.createElement(
+	                                    "li",
+	                                    { className: "list-inline-item footer-inline-list" },
+	                                    "About"
+	                                ),
+	                                React.createElement(
+	                                    "li",
+	                                    { className: "list-inline-item footer-inline-list" },
+	                                    "Help"
+	                                ),
+	                                React.createElement(
+	                                    "li",
+	                                    { className: "list-inline-item footer-inline-list" },
+	                                    "Jobs"
+	                                ),
+	                                React.createElement(
+	                                    "li",
+	                                    { className: "list-inline-item footer-inline-list" },
+	                                    "Press"
+	                                ),
+	                                React.createElement(
+	                                    "li",
+	                                    { className: "list-inline-item footer-inline-list" },
+	                                    "Legal"
+	                                ),
+	                                React.createElement(
+	                                    "li",
+	                                    { className: "list-inline-item footer-inline-list" },
+	                                    "Blog"
+	                                ),
+	                                React.createElement(
+	                                    "li",
+	                                    { className: "list-inline-item footer-inline-list" },
+	                                    "Twitter"
+	                                ),
+	                                React.createElement(
+	                                    "li",
+	                                    { className: "list-inline-item footer-inline-list" },
+	                                    "Facebook"
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            "div",
+	                            { className: "col-md-12 text-center" },
+	                            React.createElement(
+	                                "p",
+	                                { className: "small m-btm-0" },
+	                                "\xA9 Copyright 2017. Alpha Games Inc. All Rights Reserved."
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Footer;
+	}(React.Component);
+
+	module.exports = Footer;
+
+/***/ },
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(237);
+	var content = __webpack_require__(241);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(239)(content, {});
+	var update = __webpack_require__(243)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -26698,21 +27123,21 @@
 	}
 
 /***/ },
-/* 237 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(238)();
+	exports = module.exports = __webpack_require__(242)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "body {\n  background-color: maroon; }\n", ""]);
+	exports.push([module.id, ".p-0-r {\n  padding-right: 0; }\n\n.p-0-l {\n  padding-left: 0; }\n\n.space {\n  padding-top: 30px;\n  padding-bottom: 30px; }\n\n.space-tiny {\n  padding-top: 5px;\n  padding-bottom: 5px; }\n\n.space-footer {\n  padding-top: 60px;\n  padding-bottom: 60px; }\n\n.m-btm-0 {\n  margin-bottom: 0; }\n\n.home-header {\n  margin-top: 100px;\n  background-color: #cae1ff;\n  padding-top: 50px;\n  padding-bottom: 50px; }\n\n.header-featured-game {\n  height: 350px;\n  background-color: salmon;\n  padding-right: 0; }\n\n.header-featured-game-info {\n  height: 350px;\n  background-color: darkolivegreen;\n  padding-left: 0; }\n\n.footer {\n  background-color: #cae1ff; }\n\n.footer-inline-list {\n  margin-right: 20px !important; }\n  .footer-inline-list:last-child {\n    margin-right: 0 !important; }\n\n.login-modal {\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%); }\n\n.modal-fade {\n  z-index: 9999;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.65); }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 238 */
+/* 242 */
 /***/ function(module, exports) {
 
 	/*
@@ -26768,7 +27193,7 @@
 
 
 /***/ },
-/* 239 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
