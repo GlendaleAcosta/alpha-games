@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 class LoginModal extends React.Component{
 
@@ -13,15 +14,29 @@ class LoginModal extends React.Component{
 
     render(){
         return (
+            
             <div className="modal-fade">
+         
                 <div className="login-modal card col-md-4">
+                    <div onClick={this.closeLogin} className="modal-x"></div>
                     <div className="card-block">
-                        <h1 className="lead">Login Modal</h1>     
+                        <h2>Login</h2>     
                     </div>
                     <div className="card-block">
-                        <button onClick={this.closeLogin} type="button" className="btn form-control btn-primary">Close</button>   
+                        <div className="form-group">
+                            <label>Email:</label>
+                            <input className="form-control" type="text" placeholder="Enter Email" />
+                        </div>
+                        <div className="form-group">
+                            <label>Password:</label>
+                            <input className="form-control" type="password" placeholder="Enter password" />
+                        </div>
+                    </div>
+                    <div className="card-block">
+                        <button type="button" className="btn form-control btn-primary">Login</button>   
                     </div>
                 </div>
+                
             </div>
         );
     }

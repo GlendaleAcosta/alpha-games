@@ -2,6 +2,7 @@ var React = require('react');
 var { Link, Indexlink } = require('react-router');
 var LoginModal = require('LoginModal');
 var SignUpModal = require('SignUpModal');
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 class Nav extends React.Component{
 
@@ -15,7 +16,6 @@ class Nav extends React.Component{
             showLogin: false,
             showSignUp: false
         };
-        
     }
     
     showLogin(){    
@@ -85,8 +85,13 @@ class Nav extends React.Component{
                         </div>
                     </div>
                 </nav>
-                {renderLogin()}
-                {renderSignUp()}
+                <ReactCSSTransitionGroup
+                transitionName="example"
+                transitionEnterTimeout={225}
+                transitionLeaveTimeout={225}>
+                    {renderLogin()}
+                    {renderSignUp()}
+                </ReactCSSTransitionGroup>
             </div>
         );
     }

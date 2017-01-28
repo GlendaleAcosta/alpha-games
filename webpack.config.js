@@ -25,7 +25,8 @@ module.exports = {
             GameGrid: "app/src/components/GameGrid.jsx",
             Footer: "app/src/components/Footer.jsx",
             LoginModal: "app/src/components/LoginModal.jsx",
-            SignUpModal: "app/src/components/SignUpModal.jsx"
+            SignUpModal: "app/src/components/SignUpModal.jsx",
+            SignUp: "app/src/actions/SignUp.jsx"
         },
         extensions: ['', '.js', '.jsx']
     },
