@@ -26859,6 +26859,10 @@
 
 	        _this.closeSignUp = _this.closeSignUp.bind(_this);
 	        _this.onSignUp = _this.onSignUp.bind(_this);
+	        _this.state = {
+	            msg: null
+	        };
+
 	        return _this;
 	    }
 
@@ -26869,20 +26873,45 @@
 	        }
 	    }, {
 	        key: 'onSignUp',
-	        value: function onSignUp() {
+	        value: function onSignUp(e) {
+	            e.preventDefault();
 
+	            var that = this;
 	            var user = {
 	                email: this.refs.email.value,
 	                password: this.refs.password.value
 	            };
 
-	            SignUp.testSuperagent(user);
-	            this.refs.email.value = "";
-	            this.refs.password.value = "";
+	            SignUp.postSignUp(user).then(function (res) {
+
+	                that.refs.email.value = ""; // Clear Email Input
+	                that.refs.password.value = ""; // Clear Password Input
+
+	                that.setState({
+	                    msg: res.body.msg
+	                });
+	            }).catch(function (err) {
+	                console.log(err);
+	            });
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _state = this.state,
+	                msg = _state.msg,
+	                formSuccess = _state.formSuccess,
+	                formCtrlSuccess = _state.formCtrlSuccess;
+
+	            function renderErrorMsg() {
+	                if (typeof msg === 'string') {
+	                    return React.createElement(
+	                        'p',
+	                        { className: 'text-danger small' },
+	                        '* ',
+	                        msg
+	                    );
+	                }
+	            }
 	            return React.createElement(
 	                'div',
 	                { className: 'modal-fade' },
@@ -26892,7 +26921,7 @@
 	                    React.createElement('div', { onClick: this.closeSignUp, className: 'modal-x' }),
 	                    React.createElement(
 	                        'div',
-	                        { className: 'card-block' },
+	                        { className: 'card-block p-btm-0' },
 	                        React.createElement(
 	                            'h2',
 	                            null,
@@ -26904,7 +26933,8 @@
 	                        { onSubmit: this.onSignUp },
 	                        React.createElement(
 	                            'div',
-	                            { className: 'card-block' },
+	                            { className: 'card-block p-btm-0' },
+	                            renderErrorMsg(),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'form-group' },
@@ -26955,16 +26985,9 @@
 	var request = __webpack_require__(238);
 
 	module.exports = {
-	    testSuperagent: function testSuperagent(user) {
+	    postSignUp: function postSignUp(user) {
 
-	        return request.post('/sign-up').send(user).set('Accept', 'application/json').end(function (err, res) {
-
-	            if (err) {
-	                console.log(err);
-	            } else if (res) {
-	                console.log(res);
-	            }
-	        });
+	        return request.post('/sign-up').send(user).set('Accept', 'application/json');
 	    }
 	};
 
@@ -31324,7 +31347,7 @@
 
 
 	// module
-	exports.push([module.id, ".p-0-r {\n  padding-right: 0; }\n\n.p-0-l {\n  padding-left: 0; }\n\n.space {\n  padding-top: 30px;\n  padding-bottom: 30px; }\n\n.space-tiny {\n  padding-top: 5px;\n  padding-bottom: 5px; }\n\n.space-footer {\n  padding-top: 60px;\n  padding-bottom: 60px; }\n\n.m-btm-0 {\n  margin-bottom: 0; }\n\n.home-header {\n  margin-top: 100px;\n  background-color: #cae1ff;\n  padding-top: 50px;\n  padding-bottom: 50px; }\n\n.header-featured-game {\n  height: 350px;\n  background-color: salmon;\n  padding-right: 0; }\n\n.header-featured-game-info {\n  height: 350px;\n  background-color: darkolivegreen;\n  padding-left: 0; }\n\n.footer {\n  background-color: #cae1ff; }\n\n.footer-inline-list {\n  margin-right: 20px !important; }\n  .footer-inline-list:last-child {\n    margin-right: 0 !important; }\n\n.login-modal {\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  box-shadow: 5px 5px 30px 5px rgba(0, 0, 0, 0.6);\n  position: absolute !important;\n  animation: enter-login 0.3s ease-in-out; }\n\n@keyframes enter-login {\n  0% {\n    transform: translate(-50%, -100%); }\n  40% {\n    transform: translate(-50%, -50%); }\n  65% {\n    transform: translate(-50%, -60%); }\n  100% {\n    transform: translate(-50%, -50%); } }\n\n.modal-x {\n  width: 40px;\n  height: 40px;\n  position: fixed;\n  top: 10px;\n  right: 10px;\n  background-color: rgba(0, 0, 0, 0.4);\n  cursor: pointer;\n  border-radius: 100%; }\n\n.modal-fade {\n  z-index: 9999;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.65);\n  animation: enter-modal-fade 0.3s ease-in-out; }\n\n@keyframes enter-modal-fade {\n  from {\n    background-color: transparent; }\n  to {\n    background-color: rgba(0, 0, 0, 0.65); } }\n\n.example-enter {\n  background-color: rgba(0, 0, 0, 0.01); }\n\n.example-enter.example-enter-active {\n  background-color: rgba(0, 0, 0, 0.65);\n  transition: opacity 225ms ease-in-out; }\n\n.example-leave {\n  opacity: 1; }\n\n.example-leave.example-leave-active {\n  opacity: 0;\n  transition: opacity 225ms ease-in-out; }\n", ""]);
+	exports.push([module.id, ".p-0-r {\n  padding-right: 0; }\n\n.p-0-l {\n  padding-left: 0; }\n\n.p-btm-0 {\n  padding-bottom: 0; }\n\n.space {\n  padding-top: 30px;\n  padding-bottom: 30px; }\n\n.space-tiny {\n  padding-top: 5px;\n  padding-bottom: 5px; }\n\n.space-footer {\n  padding-top: 60px;\n  padding-bottom: 60px; }\n\n.m-btm-0 {\n  margin-bottom: 0; }\n\n.home-header {\n  margin-top: 100px;\n  background-color: #cae1ff;\n  padding-top: 50px;\n  padding-bottom: 50px; }\n\n.header-featured-game {\n  height: 350px;\n  background-color: salmon;\n  padding-right: 0; }\n\n.header-featured-game-info {\n  height: 350px;\n  background-color: darkolivegreen;\n  padding-left: 0; }\n\n.footer {\n  background-color: #cae1ff; }\n\n.footer-inline-list {\n  margin-right: 20px !important; }\n  .footer-inline-list:last-child {\n    margin-right: 0 !important; }\n\n.login-modal {\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  box-shadow: 5px 5px 30px 5px rgba(0, 0, 0, 0.6);\n  position: absolute !important;\n  animation: enter-login 0.3s ease-in-out; }\n\n@keyframes enter-login {\n  0% {\n    transform: translate(-50%, -100%); }\n  40% {\n    transform: translate(-50%, -50%); }\n  65% {\n    transform: translate(-50%, -60%); }\n  100% {\n    transform: translate(-50%, -50%); } }\n\n.modal-x {\n  width: 40px;\n  height: 40px;\n  position: fixed;\n  top: 10px;\n  right: 10px;\n  background-color: rgba(0, 0, 0, 0.4);\n  cursor: pointer;\n  border-radius: 100%; }\n\n.modal-fade {\n  z-index: 9999;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.65);\n  animation: enter-modal-fade 0.3s ease-in-out; }\n\n@keyframes enter-modal-fade {\n  from {\n    background-color: transparent; }\n  to {\n    background-color: rgba(0, 0, 0, 0.65); } }\n\n.example-enter {\n  background-color: rgba(0, 0, 0, 0.01); }\n\n.example-enter.example-enter-active {\n  background-color: rgba(0, 0, 0, 0.65);\n  transition: opacity 225ms ease-in-out; }\n\n.example-leave {\n  opacity: 1; }\n\n.example-leave.example-leave-active {\n  opacity: 0;\n  transition: opacity 225ms ease-in-out; }\n", ""]);
 
 	// exports
 
