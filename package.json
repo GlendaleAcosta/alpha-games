@@ -9,8 +9,12 @@
   "author": "Glendale Acosta",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.16.0",
+    "connect-mongo": "^1.3.2",
     "express": "^4.14.0",
+    "express-session": "^1.15.0",
+    "mongoose": "^4.7.9",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.2",
     "react-dom": "^15.4.2",

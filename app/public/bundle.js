@@ -26963,7 +26963,6 @@
 	                console.log(err);
 	            } else if (res) {
 	                console.log(res);
-	                console.log(res.body.user.email);
 	            }
 	        });
 	    }
