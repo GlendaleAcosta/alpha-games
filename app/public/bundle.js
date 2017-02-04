@@ -63,14 +63,38 @@
 
 	var store = __webpack_require__(301);
 	var ProfilePage = __webpack_require__(309);
-
+	var request = __webpack_require__(250);
 	__webpack_require__(305);
 
 	var authenticate = function authenticate() {
-	    if (window.localStorage.getItem('AG-JWT')) {
-	        // if jwt token exists        
-	        // console.log(window.localStorage.getItem('AG-JWT'));     // authenticate
+	    var token = window.localStorage.getItem('AG-JWT') || null;
+	    if (token) {
 	        console.log("logged in");
+	        // send token to server to authenticate
+	        request.post('/authenticate').send({ token: token }).set('Accept', 'application/json').end(function (err, res) {
+	            if (err) {
+	                console.log(err);
+	            } else {
+	                console.log(res);
+	                if (res.body.msg === 'invalid jwt') {
+	                    console.log("the jwt is invalid. redirect to 404. and tell user to clear cookies");
+	                }
+	            }
+	        });
+
+	        //  function(user){
+
+	        //         return request
+	        //             .post('/login')
+	        //             .send(user)
+	        //             .set('Accept', 'application/json');
+	        //     }
+
+	        // Then check if user in store is set 
+	        // if user is set 
+	        // then cool
+	        // if user is not set 
+	        // then set it
 	    } else {
 	        console.log("not logged in");
 	    }
@@ -86,7 +110,7 @@
 	            Route,
 	            { path: '/', component: Main },
 	            React.createElement(IndexRoute, { component: Home, onEnter: authenticate }),
-	            React.createElement(Route, { path: 'profile/:id', component: ProfilePage, onEnter: authenticate })
+	            React.createElement(Route, { path: 'profile/:userId', component: ProfilePage, onEnter: authenticate })
 	        )
 	    )
 	), document.getElementById('app'));

@@ -5,6 +5,7 @@ var bcrypt = require('bcrypt-nodejs');
 var session = require('express-session');
 var mongoose = require('mongoose');
 var MongoStore = require('connect-mongo')(session);
+var jwt = require('jsonwebtoken');
 
 var PORT = process.env.PORT || 3030;
 var app = express();
@@ -35,8 +36,24 @@ app.use(session({
   })
 }));
 app.use(function(req, res, next){
-  console.log("this is middleware being used");
-  next();
+  
+  var token = req.body.token || null;
+  if (token){
+
+      jwt.verify(token, 'jwtTokenSecret', function(err, decoded) {
+          if(err){
+              return res.json({msg: "invalid jwt"});
+          } else if(decoded && req.url === '/authenticate') {            
+              return res.json({ msg: "Valid jwt" });
+          } else {
+              next();
+          }
+      });
+
+  } else {
+      next();
+  }
+  
 });
 
 
@@ -46,7 +63,6 @@ app.get('/*', function(req,res,next){
 });
 app.post('/sign-up', userCtrl.postSignUp);
 app.post('/login', userCtrl.postLogin);
-
 
 // Server
 app.listen( PORT , () => {
