@@ -1,4 +1,5 @@
 var React = require('react');
+var UserList = require('../containers/user-list');
 
 class GameGrid extends React.Component{
 
@@ -43,7 +44,7 @@ class GameGrid extends React.Component{
                         
                     </div>    
                 </div>
-
+                <UserList/>
             </div>
         );
     }

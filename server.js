@@ -34,13 +34,18 @@ app.use(session({
     autoReconnect: true
   })
 }));
+app.use(function(req, res, next){
+  console.log("this is middleware being used");
+  next();
+});
+
 
 // Routes
-app.get('*', function(req,res,next){
+app.get('/*', function(req,res,next){
     res.sendFile(path.join(__dirname, 'app', 'public', 'index.html'));
 });
 app.post('/sign-up', userCtrl.postSignUp);
-
+app.post('/login', userCtrl.postLogin);
 
 
 // Server

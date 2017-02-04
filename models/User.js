@@ -4,18 +4,16 @@ var mongoose = require('mongoose');
 // User Schema
 var userSchema = new mongoose.Schema({
   email: { type: String, unique: true },
+  username: String,
   password: String,
-  profile: {
-    name: String,
-    picture: String
-  }
+  profile_pic: String
+  
 }, { timestamps: true });
 
 
 // Password Hash Middleware
 userSchema.pre('save', function save(next){
     var user = this;
-    console.log("this is a function");
     
     bcrypt.genSalt(10, (err, salt) => {
 
@@ -28,6 +26,8 @@ userSchema.pre('save', function save(next){
         })
     })
 });
+
+
 
 
 var User = mongoose.model('User', userSchema);

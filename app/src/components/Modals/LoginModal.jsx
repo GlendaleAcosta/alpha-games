@@ -1,22 +1,24 @@
 var React = require('react');
-var SignUp = require('SignUp');
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
+var Login = require('Login');
+var {connect} = require('react-redux');
+var UserActions = require('../../actions/userActions');
 
-class SignUpModal extends React.Component{
+
+class LoginModal extends React.Component{
 
     constructor(props){
         super(props);
-        this.closeSignUp = this.closeSignUp.bind(this);
-        this.onSignUp = this.onSignUp.bind(this);
-        this.state = {
-            msg: null
-        }
-        
+        this.closeLogin = this.closeLogin.bind(this);   
+        this.onLogin = this.onLogin.bind(this);
+        this.state = { msg: null};
     }
 
-    closeSignUp() {
-        this.props.onCloseSignUp();
+    closeLogin() {
+        this.props.onCloseLogin();
     }
-    onSignUp(e) {
+
+    onLogin(e){
         e.preventDefault();
         
         var that = this;
@@ -24,41 +26,49 @@ class SignUpModal extends React.Component{
             email: this.refs.email.value,
             password: this.refs.password.value
         }
- 
-        SignUp.postSignUp(user)       
+
+        Login.postLogin(user)
             .then(function(res){
                 
-                that.refs.email.value = "";     // Clear Email Input
-                that.refs.password.value = "";  // Clear Password Input
+                
+                that.refs.email.value = "";                 
+                that.refs.password.value = "";
 
                 that.setState({
                     msg: res.body.msg
-                })
+                });
+                
+                var token = res.body.token || null;
+                if(token){                                      
+                    localStorage.setItem("AG-JWT", token);             
+                }
+                
+                
             })
-            .catch(function(err){
+            .catch(function(err){ 
+                
                 console.log(err);
             })
-
-        
-
     }
 
     render(){
-        var {msg,formSuccess, formCtrlSuccess} = this.state
+        var {msg} = this.state;
         function renderErrorMsg() {
             if(typeof msg === 'string') {
                 return <p className="text-danger small">* {msg}</p>
             }
         }
+
         return (
+            
             <div className="modal-fade">
                 <div className="login-modal card col-md-4">
-                    <div onClick={this.closeSignUp} className="modal-x"></div>
+                    <div onClick={this.closeLogin} className="modal-x"></div>
                     <div className="card-block p-btm-0">
-                        <h2>Sign Up</h2>   
+                        <h2>Login</h2>     
                     </div>
-                    <form onSubmit={this.onSignUp}>
-                        <div className="card-block p-btm-0">
+                    <form onSubmit={this.onLogin}>
+                        <div className="card-block">
                             {renderErrorMsg()}
                             <div className="form-group">
                                 <label>Email:</label>
@@ -70,13 +80,13 @@ class SignUpModal extends React.Component{
                             </div>
                         </div>
                         <div className="card-block">
-                            <button type="submit" className="btn form-control btn-primary">Sign Up</button>   
+                            <button type="submit" className="btn form-control btn-primary">Login</button>   
                         </div>
                     </form>
-                </div>
+                </div> 
             </div>
         );
     }
 }
 
-module.exports = SignUpModal;
+module.exports = LoginModal;

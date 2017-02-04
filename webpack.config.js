@@ -19,14 +19,16 @@ module.exports = {
         root: __dirname,
         alias: {
             Main: "app/src/components/Main.jsx",
-            Nav: "app/src/components/Nav.jsx",
-            Home: "app/src/components/Home.jsx",
+            Nav: "app/src/components/Layout/Nav.jsx",
+            Home: "app/src/components/Pages/Home.jsx",
             HomeHeader: "app/src/components/HomeHeader.jsx",
             GameGrid: "app/src/components/GameGrid.jsx",
-            Footer: "app/src/components/Footer.jsx",
-            LoginModal: "app/src/components/LoginModal.jsx",
-            SignUpModal: "app/src/components/SignUpModal.jsx",
-            SignUp: "app/src/actions/SignUp.jsx"
+            Footer: "app/src/components/Layout/Footer.jsx",
+            LoginModal: "app/src/components/Modals/LoginModal.jsx",
+            Login: "app/src/api/Login.jsx",
+            SignUpModal: "app/src/components/Modals/SignUpModal.jsx",
+            SignUp: "app/src/api/SignUp.jsx",
+            ProfilePage: "app/src/components/Pages/ProfilePage.jsx"
         },
         extensions: ['', '.js', '.jsx']
     },
